@@ -1,5 +1,6 @@
 const hambergerMenu=document.body.querySelector('.hambar')
 const footer=document.querySelector('footer')
+const clock=document.querySelector('.clock')
 hambergerMenu.addEventListener('click',()=>{
     footer.innerHTML=`
     <div class="hamberMenu"></div>
@@ -33,3 +34,10 @@ hambergerMenu.addEventListener('click',()=>{
   })
   hambergerMenu.addEventListener('click',()=>{footer.classList.remove('hidden')})
 })
+function renderClock(){
+    const now=new Date();
+    const hour=now.getHours()
+    const min=now.getMinutes()
+    clock.innerHTML=`<div>${hour}:${min}</div>`
+}
+setInterval(renderClock,1000)
