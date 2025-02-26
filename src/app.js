@@ -40,18 +40,18 @@ function renderClock(){
     const min=now.getMinutes()
     if(hour/10<1){
         if(min/10<1){
-            clock.innerHTML=`<div>0${hour}:0${min}</div>`
+            clock.innerHTML=`<div class="mb-4">0${hour}:0${min}</div>`
         }
         else{
-            clock.innerHTML=`<div>0${hour}:${min}</div>`
+            clock.innerHTML=`<div class="mb-4">0${hour}:${min}</div>`
         }
     }
     else{
         if(min/10<1){
-            clock.innerHTML=`<div>0${hour}:0${min}</div>`
+            clock.innerHTML=`<div class="mb-4">0${hour}:0${min}</div>`
         }
         else{
-            clock.innerHTML=`<div>0${hour}:${min}</div>`
+            clock.innerHTML=`<div class="mb-4">0${hour}:${min}</div>`
         }
     }
 }
