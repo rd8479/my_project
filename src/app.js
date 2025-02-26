@@ -38,6 +38,21 @@ function renderClock(){
     const now=new Date();
     const hour=now.getHours()
     const min=now.getMinutes()
-    clock.innerHTML=`<div>${hour}:${min}</div>`
+    if(hour/10<1){
+        if(min/10<1){
+            clock.innerHTML=`<div>0${hour}:0${min}</div>`
+        }
+        else{
+            clock.innerHTML=`<div>0${hour}:${min}</div>`
+        }
+    }
+    else{
+        if(min/10<1){
+            clock.innerHTML=`<div>0${hour}:0${min}</div>`
+        }
+        else{
+            clock.innerHTML=`<div>0${hour}:${min}</div>`
+        }
+    }
 }
 setInterval(renderClock,1000)
