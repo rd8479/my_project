@@ -2,7 +2,7 @@ const hambergerMenu=document.body.querySelector('.hambar')
 const footer=document.querySelector('footer')
 const clock=document.querySelector('.clock')
 const section=document.querySelector('section')
-const data=[{
+const dataBase=[{
     id:'1',
     sectionName:'section-name',
     batteryName1:'battery-name',
@@ -67,6 +67,17 @@ function renderClock(){
     }
 }
 setInterval(renderClock,1000)
-function renderBord(){
-    
+const data={
+    datasets:[{
+        data:[dataBase.batteryPercentCharge,100-dataBase.batteryPercentCharge],
+        backgroundColor:[
+            '#fb2c36',
+            'rgba(0.637 0.237 25.331 0.3)'
+        ]
+    }]
+
+}
+const config={
+    type:'doughnut',
+    data:data
 }
