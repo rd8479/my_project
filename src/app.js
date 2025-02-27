@@ -4,6 +4,8 @@ const clock=document.querySelector('.clock')
 const section=document.querySelector('section')
 const ctx1=document.getElementById('myChart1')
 const ctx2=document.getElementById('myChart2')
+const ctx3=document.getElementById('myChart3')
+const ctx4=document.getElementById('myChart4')
 const dataBase=[{
     id:'1',
     sectionName:'section-name',
@@ -15,8 +17,10 @@ const dataBase=[{
     batteryPercentDanger1:64,
     batteryPercentCharge2:56,
     batteryPercentDanger2:32,
-    batteryPercentCharge3:56,
-    batteryPercentDanger3:32,
+    batteryPercentCharge3:22,
+    batteryPercentDanger3:36,
+    batteryPercentCharge4:87,
+    batteryPercentDanger4:59
 }]
 hambergerMenu.addEventListener('click',()=>{
     footer.innerHTML=`
@@ -99,4 +103,34 @@ const data2={
 const config2=new Chart(ctx2,{
   type: 'doughnut',
   data: data2,
+})
+
+
+const data3={
+    datasets: [{
+      data: [dataBase[0].batteryPercentCharge3, 100-dataBase[0].batteryPercentCharge3],
+      backgroundColor: [
+        '#67ECB2',
+        '#67ecb24d'
+      ],
+    }]
+}
+const config3=new Chart(ctx3,{
+  type: 'doughnut',
+  data: data3,
+})
+
+
+const data4={
+    datasets: [{
+      data: [dataBase[0].batteryPercentCharge4, 100-dataBase[0].batteryPercentCharge4],
+      backgroundColor: [
+        '#183C62',
+        '#183c624b'
+      ],
+    }]
+}
+const config4=new Chart(ctx4,{
+  type: 'doughnut',
+  data: data4,
 })
