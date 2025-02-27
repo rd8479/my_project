@@ -2,6 +2,8 @@ const hambergerMenu=document.body.querySelector('.hambar')
 const footer=document.querySelector('footer')
 const clock=document.querySelector('.clock')
 const section=document.querySelector('section')
+const ctx1=document.getElementById('myChart1')
+const ctx2=document.getElementById('myChart2')
 const dataBase=[{
     id:'1',
     sectionName:'section-name',
@@ -9,8 +11,12 @@ const dataBase=[{
     batteryName2:'battery-name',
     batteryName3:'battery-name',
     batteryName4:'battery-name',
-    batteryPercentCharge:34,
-    batteryPercentDanger:64
+    batteryPercentCharge1:34,
+    batteryPercentDanger1:64,
+    batteryPercentCharge2:56,
+    batteryPercentDanger2:32,
+    batteryPercentCharge3:56,
+    batteryPercentDanger3:32,
 }]
 hambergerMenu.addEventListener('click',()=>{
     footer.innerHTML=`
@@ -67,17 +73,30 @@ function renderClock(){
     }
 }
 setInterval(renderClock,1000)
-const data={
-    datasets:[{
-        data:[dataBase.batteryPercentCharge,100-dataBase.batteryPercentCharge],
-        backgroundColor:[
-            '#fb2c36',
-            'rgba(0.637 0.237 25.331 0.3)'
-        ]
-    }]
+const data1={
+      datasets: [{
+        data: [dataBase[0].batteryPercentCharge1, 100-dataBase[0].batteryPercentCharge1],
+        backgroundColor: [
+          '#fb2c36',
+          '#fa32394d'
+        ],
+      }]
+}
+const config1=new Chart(ctx1,{
+    type: 'doughnut',
+    data: data1,
+})
 
+const data2={
+    datasets: [{
+      data: [dataBase[0].batteryPercentCharge2, 100-dataBase[0].batteryPercentCharge2],
+      backgroundColor: [
+        '#FF6500',
+        '#ff66004d'
+      ],
+    }]
 }
-const config={
-    type:'doughnut',
-    data:data
-}
+const config2=new Chart(ctx2,{
+  type: 'doughnut',
+  data: data2,
+})

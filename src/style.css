@@ -22,3 +22,7 @@
 .clock{
     font-family: 'Digital Numbers',sans-serif;
 }
+.chart1{
+    position: absolute;
+    left: 10%;
+}
