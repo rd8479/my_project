@@ -1,6 +1,17 @@
 const hambergerMenu=document.body.querySelector('.hambar')
 const footer=document.querySelector('footer')
 const clock=document.querySelector('.clock')
+const section=document.querySelector('section')
+const data=[{
+    id:'1',
+    sectionName:'section-name',
+    batteryName1:'battery-name',
+    batteryName2:'battery-name',
+    batteryName3:'battery-name',
+    batteryName4:'battery-name',
+    batteryPercentCharge:34,
+    batteryPercentDanger:64
+}]
 hambergerMenu.addEventListener('click',()=>{
     footer.innerHTML=`
     <div class="hamberMenu"></div>
@@ -48,11 +59,14 @@ function renderClock(){
     }
     else{
         if(min/10<1){
-            clock.innerHTML=`<div class="mb-4">0${hour}:0${min}</div>`
+            clock.innerHTML=`<div class="mb-4">${hour}:0${min}</div>`
         }
         else{
-            clock.innerHTML=`<div class="mb-4">0${hour}:${min}</div>`
+            clock.innerHTML=`<div class="mb-4">${hour}:${min}</div>`
         }
     }
 }
 setInterval(renderClock,1000)
+function renderBord(){
+    
+}
