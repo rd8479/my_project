@@ -2,7 +2,6 @@ const hambergerMenu = document.body.querySelector('.hambar')
 const footer = document.querySelector('footer')
 const clock = document.querySelector('.clock')
 const section = document.querySelector('section')
-
 function findBatteryCharge(sectionId,id,dataBase){
   return dataBase[sectionId-1] [('battery'+String(id))].charge
 }
@@ -95,9 +94,29 @@ function renderClock() {
     }
   }
 }
+function renderSection(){
+  const tamplate=dataBase.map(()=>{
+    return `
+      <div class="drive flex flex-col items-center">
+        <div onclick="renderBord()" class="driveBar mt-6 flex justify-between bg-amber-50 rounded-[12px] w-[272px] mb-10 items-center cursor-pointer">
+          <div class=" h-[28px] border-r-2 px-3 flex items-center">
+            <img src="./gitHover.svg" alt="" width="24px">
+          </div>
+          <div class="text-[18px]">section-name</div>
+          <div class="text-2xl rotate-90 ">></div>
+          <div class=""></div>
+        </div>
+      </div>                
+`
+  }).join('')
+  section.innerHTML=tamplate
+}
+renderSection()
+const drive=document.querySelector('.drive')
 setInterval(renderClock, 1000)
+let hid=false
 function renderBord() {
-  section.innerHTML += `
+  drive.innerHTML+= `
         <div class="lineTo relative w-full h-[200px] left-[50%] -translate-x-[50%] ">
           <hr class="bg-red-500 w-45 h-1.5 opacity-30 rotate-90 absolute top-12 left-8">
           <hr class="bg-red-500 w-10 h-1.5 opacity-30  absolute top-34 left-21">
@@ -132,6 +151,18 @@ function renderBord() {
           <div class="charge4 absolute top-22 text-white text-[13px] left-1"><p>battery-name</p></div>
           <div class="charge4 absolute top-34 text-white left-7.5"><p>87%</p></div>
   `
+  if(hid){
+    [...document.querySelectorAll('.lineTo')].map(item=>{
+      item.remove()
+    })
+    hid=!hid
+  }
+  else{
+    hid=!hid
+    renderChart()
+  }
+}
+function renderChart(){
   const ctx1 = document.getElementById('11')
   const ctx2 = document.getElementById('12')
   const ctx3 = document.getElementById('13')
