@@ -8,13 +8,13 @@
     filter: blur(8px);
 }
 .hamberMenu{
-    width: 100%;
-    height: 30vh;
-    background-image:linear-gradient(to right,#0434F2 35%,rgba(4, 52, 242, 0.75) 80%); 
-    position: fixed;
-    bottom: 0;
-    right: 0;
-    filter: blur(16px);
+    width: 320px;
+    height: 100px;
+    background-image:linear-gradient(to right,#0434f2 35%,rgba(4, 52, 242, 0.3) 80%); 
+    gap: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .git,.phone,.email{
     transition: 250ms linear;

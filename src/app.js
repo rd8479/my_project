@@ -64,10 +64,11 @@ const dataBase = [{
 }]
 hambergerMenu.addEventListener('click', () => {
   footer.innerHTML = `
-    <div class="hamberMenu"></div>
-    <img src="./git.svg" class="git fixed bottom-12 left-28" style="width: 30px;">
-    <img src="./phone.svg" class="phone fixed bottom-12 left-38" style="width: 30px;">
-    <img src="./email.svg" class="email fixed bottom-12 left-48" style="width: 30px">`
+    <div class="hamberMenu">
+    <img src="./git.svg" class="git" style="width: 30px;">
+    <img src="./phone.svg" class="phone" style="width: 30px;">
+    <img src="./email.svg" class="email" style="width: 30px">
+    </div>`
   const git = document.body.querySelector('.git')
   const phone = document.body.querySelector('.phone')
   const email = document.body.querySelector('.email')
@@ -142,11 +143,11 @@ function renderSection(){
 }
 renderSection()
 setInterval(renderClock, 1000)
-function renderBord(id,hid) {
+function renderBord(id) {
   let drive=document.querySelector(`.drive${id}`)
   console.log(drive)
   drive.innerHTML+= `
-        <div class="lineTo${id} relative w-full h-[200px] left-[50%] -translate-x-[50%] ">
+        <div class="lineTo${id} relative w-[320px] h-[200px]">
           <hr class="bg-red-500 w-45 h-1.5 opacity-30 rotate-90 absolute top-12 left-8">
           <hr class="bg-red-500 w-10 h-1.5 opacity-30  absolute top-34 left-21">
 
