@@ -620,11 +620,17 @@
   .w-\[700px\] {
     width: 700px;
   }
+  .w-\[768px\] {
+    width: 768px;
+  }
   .w-\[786px\] {
     width: 786px;
   }
   .w-\[2720px\] {
     width: 2720px;
+  }
+  .w-\[px\] {
+    width: px;
   }
   .w-full {
     width: 100%;
