@@ -8,6 +8,35 @@ function findBatteryCharge(sectionId,id,dataBase){
 const dataBase = [{
   id: '1',
   sectionName: 'section-name',
+  hid:false,
+  battery1: {
+    id: '1',
+    name: 'battery-name',
+    charge: 34,
+    denger: 64
+  },
+  battery2: {
+    id: 2,
+    name: 'battery-name',
+    charge: 56,
+    denger: 32
+  },
+  battery3: {
+    id: 3,
+    name: 'battery-name',
+    charge: 22,
+    denger: 36,
+  },
+  battery4: {
+    id: 4,
+    name: 'battery-name',
+    charge: 87,
+    denger: 59
+  },
+},{
+  id: '2',
+  sectionName: 'section-name',
+  hid:false,
   battery1: {
     id: '1',
     name: 'battery-name',
@@ -95,10 +124,10 @@ function renderClock() {
   }
 }
 function renderSection(){
-  const tamplate=dataBase.map(()=>{
+  const tamplate=dataBase.map((item)=>{
     return `
-      <div class="drive flex flex-col items-center">
-        <div onclick="renderBord()" class="driveBar mt-6 flex justify-between bg-amber-50 rounded-[12px] w-[272px] mb-10 items-center cursor-pointer">
+      <div class="drive${item.id} flex flex-col items-center">
+        <div onclick="renderBord(${item.id},${item.hid})" class="driveBar mt-6 flex justify-between bg-amber-50 rounded-[12px] w-[272px] mb-10 items-center cursor-pointer">
           <div class=" h-[28px] border-r-2 px-3 flex items-center">
             <img src="./gitHover.svg" alt="" width="24px">
           </div>
@@ -112,12 +141,12 @@ function renderSection(){
   section.innerHTML=tamplate
 }
 renderSection()
-const drive=document.querySelector('.drive')
 setInterval(renderClock, 1000)
-let hid=false
-function renderBord() {
+function renderBord(id,hid) {
+  let drive=document.querySelector(`.drive${id}`)
+  console.log(drive)
   drive.innerHTML+= `
-        <div class="lineTo relative w-full h-[200px] left-[50%] -translate-x-[50%] ">
+        <div class="lineTo${id} relative w-full h-[200px] left-[50%] -translate-x-[50%] ">
           <hr class="bg-red-500 w-45 h-1.5 opacity-30 rotate-90 absolute top-12 left-8">
           <hr class="bg-red-500 w-10 h-1.5 opacity-30  absolute top-34 left-21">
 
@@ -129,47 +158,47 @@ function renderBord() {
           <hr class="bg-[#183C62] w-20 h-1.5 opacity-30 rotate-90 absolute -top-0.5 left-28">
           <hr class="bg-[#183C62] w-17 h-1.5 opacity-30  absolute top-9 left-21.5">
           <div class="absolute left-0 -top-4">
-            <canvas class="w-[90px] " id="11"></canvas>
+            <canvas class="w-[90px] " id="${id}1"></canvas>
           </div>
           <div class="charge1 absolute -top-7 text-white text-[13px] left-1"><p>battery-name</p></div>
           <div class="charge1 absolute top-5 text-white left-7.5"><p>34%</p></div>
 
           <div class="absolute left-56.5 -top-4">
-            <canvas class="w-[90px] " id="12"></canvas>
+            <canvas class="w-[90px] " id="${id}2"></canvas>
           </div>
           <div class="charge2 absolute -top-7 text-white text-[13px] left-58"><p>battery-name</p></div>
           <div class="charge2 absolute top-5 text-white left-64"><p>56%</p></div>
 
           <div class="absolute left-57 top-25">
-            <canvas class="w-[90px]" id="13"></canvas>
+            <canvas class="w-[90px]" id="${id}3"></canvas>
           </div>
           <div class="charge3 absolute top-22 text-white text-[13px] left-58"><p>battery-name</p></div>
           <div class="charge3 absolute top-34 text-white left-64"><p>22%</p></div>
           <div class="absolute left-0 top-25">
-            <canvas class="w-[90px] "id="14"></canvas>
+            <canvas class="w-[90px] "id="${id}4"></canvas>
           </div>
           <div class="charge4 absolute top-22 text-white text-[13px] left-1"><p>battery-name</p></div>
           <div class="charge4 absolute top-34 text-white left-7.5"><p>87%</p></div>
   `
-  if(hid){
-    [...document.querySelectorAll('.lineTo')].map(item=>{
+  if(dataBase[id-1].hid){
+    [...document.querySelectorAll(`.lineTo${id}`)].map(item=>{
       item.remove()
     })
-    hid=!hid
+    dataBase[id-1].hid=!dataBase[id-1].hid
   }
   else{
-    hid=!hid
-    renderChart()
+    dataBase[id-1].hid=!dataBase[id-1].hid
+    renderChart(id)
   }
 }
-function renderChart(){
-  const ctx1 = document.getElementById('11')
-  const ctx2 = document.getElementById('12')
-  const ctx3 = document.getElementById('13')
-  const ctx4 = document.getElementById('14')
+function renderChart(id){
+  const ctx1 = document.getElementById(`${id}1`)
+  const ctx2 = document.getElementById(`${id}2`)
+  const ctx3 = document.getElementById(`${id}3`)
+  const ctx4 = document.getElementById(`${id}4`)
   const data1 = {
     datasets: [{
-      data: [findBatteryCharge(1,1,dataBase), 100-findBatteryCharge(1,1,dataBase)],
+      data: [findBatteryCharge(2,1,dataBase), 100-findBatteryCharge(2,1,dataBase)],
       backgroundColor: [
         '#183C62',
         '#183c624b'
@@ -189,7 +218,7 @@ function renderChart(){
   })
   const data2 = {
     datasets: [{
-      data: [findBatteryCharge(1,2,dataBase), 100 -findBatteryCharge(1,2,dataBase)],
+      data: [findBatteryCharge(2,2,dataBase), 100 -findBatteryCharge(2,2,dataBase)],
       backgroundColor: [
         '#67ECB2',
         '#67ecb24d'
@@ -209,7 +238,7 @@ function renderChart(){
   })
   const data3 = {
     datasets: [{
-      data: [findBatteryCharge(1,3,dataBase), 100 -findBatteryCharge(1,3,dataBase)],
+      data: [findBatteryCharge(2,3,dataBase), 100 -findBatteryCharge(2,3,dataBase)],
       backgroundColor: [
         '#FF6500',
         '#ff66004d'
@@ -229,7 +258,7 @@ function renderChart(){
   })
   const data4 = {
     datasets: [{
-      data: [findBatteryCharge(1,4,dataBase), 100-findBatteryCharge(1,4,dataBase)],
+      data: [findBatteryCharge(2,4,dataBase), 100-findBatteryCharge(2,4,dataBase)],
       backgroundColor: [
         '#fb2c36',
         '#fa32394d'
